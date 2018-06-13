@@ -54,3 +54,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'rubocop', '~> 0.57.2', require: false
+gem 'faker',          '1.7.3'
+gem 'will_paginate',           '3.1.6'
+gem 'bootstrap-will_paginate', '1.0.0'
+gem 'bootstrap-sass', '3.3.7'
