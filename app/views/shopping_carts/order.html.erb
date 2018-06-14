@@ -1,0 +1,18 @@
+<% provide(:title, "Order") %>
+
+<h1> Your Ordered Item! </h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Item Name</th>
+      <th scope="col">Unit Price</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Total Price</th>
+      <th scope="col">Time ordered</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render partial: 'order', collection: @orders %>
+  </tbody>
+</table>

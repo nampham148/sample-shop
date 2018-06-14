@@ -1,0 +1,24 @@
+<% provide(:title, "Shopping Cart") %>
+
+<h1> Your shopping carts! </h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Item Name</th>
+      <th scope="col">Unit Price</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Total Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render @shopping_carts %>
+  </tbody>
+</table>
+
+<p> The value of your current order is 
+<%= @shopping_carts.inject(0) do |sum, cart| 
+	sum + (cart.quantity * Product.find(cart.product_id).unit_price) 
+end %> </p>
+
+<%= button_to 'Order!', {controller: "shopping_carts", action: "post_order"} , method: :post, class: "btn btn-primary"  %>

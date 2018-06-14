@@ -1,0 +1,21 @@
+<div class="product">
+	<%= link_to product, action: 'go' do %>
+		<p>
+			<%= product.name %>
+		</p>
+	<% end %>
+	<p>
+		Price: <%= product.unit_price %>
+	</p>
+	<p>
+		Category: <%= product.category %>
+	</p>
+	<% if logged_in? %>
+		<%= form_for(current_user.shopping_carts.build) do |f| %>
+			<%= hidden_field_tag :product_id, product.id %>
+			<%= f.number_field :quantity, required: true %>
+			<%= f.submit "Add to Cart!", class: "btn btn-primary" %>
+		<% end %>
+	<% end %>
+	
+</div>

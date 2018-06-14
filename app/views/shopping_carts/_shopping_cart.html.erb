@@ -1,0 +1,15 @@
+<% product = Product.find(shopping_cart.product_id) %>
+
+<tr>
+  <th><%= product.name %></th>
+  <td><%= product.unit_price %></td>
+  <td>
+  	<%= form_for(shopping_cart) do |f| %>
+		  <div class=’form-group’>
+		    <%= f.number_field :quantity, value: shopping_cart.quantity, min: "1", step: "1", class: "form-control", onchange: "this.form.submit();" %>
+		  </div>
+		<% end %>
+  </td>
+  <td><%= product.unit_price * shopping_cart.quantity %></td>
+  <td> <%= link_to "delete", shopping_cart, method: :delete %> </td>
+</tr>

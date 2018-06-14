@@ -3,8 +3,16 @@
     <%= link_to "sample store", root_path, id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Home", "#" %></li>
-        <li><%= link_to "Log in", "#" %></li>        
+        <li><%= link_to "Home", root_path %></li>
+        <li><%= link_to "Products", products_path %></li>
+        <% if logged_in? %>
+          <li><%= link_to "Shopping Carts", shopping_carts_path %></li>
+          <li><%= link_to "Orders", order_shopping_carts_path %></li>
+          <li><%= link_to "Log out", logout_path, method: :delete %></li>
+        <% else %>
+          <li><%= link_to "Log in", login_path %></li>
+          <li><%= link_to "Sign up", new_user_path %></li>
+        <% end %>
       </ul>
     </nav>
   </div>

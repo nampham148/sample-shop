@@ -1,0 +1,25 @@
+<% provide(:title, "Products") %>
+
+<h1> Products </h1>
+
+<div class="row">
+	<div class="col-md-3"> 
+		<div><%= link_to "All", products_path %></div>
+		<div><%= link_to "Food", products_path(category: "food") %></div>
+		<div><%= link_to "Book", products_path(category: "book") %></div>
+		<div><%= link_to "Beer", products_path(category: "beer") %></div>
+	</div>
+	<div class="col-md-9">
+		<%= will_paginate %>
+		<% @products.each_slice(3) do |slice| %>
+			<div class="row">
+				<% slice.each do |product| %>
+					<div class="col-md-4">
+						<%= render product %>						
+					</div>
+				<% end %>
+			</div>
+		<% end %>
+		<%= will_paginate %>
+	</div>
+</div>
