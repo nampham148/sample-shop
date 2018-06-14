@@ -10,6 +10,7 @@ class ShoppingCartsController < ApplicationController
 		product_id = params[:product_id]
 		quantity = params[:shopping_cart][:quantity]
 		current_user.add_to_cart(product_id, quantity)
+		flash[:success] = "Item added to cart!"
 		redirect_to products_url
 	end
 
