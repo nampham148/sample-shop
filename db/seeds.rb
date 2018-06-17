@@ -6,43 +6,47 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-50.times do |n|
-	name = Faker::Food.dish
-	desc = "This is a description"
-	unit_price = rand(50)
-	category = "food"
+Category.create!(name: "food")
+Category.create!(name: "book")
+Category.create!(name: "beer")
 
-	Product.create!(name: name,
-									desc: desc,
-									unit_price: unit_price,
-									category: category)
+50.times do
+  name = Faker::Food.dish
+  desc = "This is a description"
+  unit_price = rand(50)
+  category_id = 1
+
+  Product.create!(name: name,
+                  desc: desc,
+                  unit_price: unit_price,
+                  category_id: category_id)
 end
 
-50.times do |n|
-	name = Faker::Book.title
-	desc = Faker::Book.author	
-	unit_price = rand(50)
-	category = "book"
+50.times do
+  name = Faker::Book.title
+  desc = Faker::Book.author 
+  unit_price = rand(50)
+  category_id = 2
 
-	Product.create!(name: name,
-									desc: desc,
-									unit_price: unit_price,
-									category: category)
+  Product.create!(name: name,
+                  desc: desc,
+                  unit_price: unit_price,
+                  category_id: category_id)
 end
 
-50.times do |n|
-	name = Faker::Beer.name
-	desc = Faker::Beer.style	
-	unit_price = rand(50)
-	category = "beer"
+50.times do
+  name = Faker::Beer.name
+  desc = Faker::Beer.style
+  unit_price = rand(50)
+  category_id = 3
 
-	Product.create!(name: name,
-									desc: desc,
-									unit_price: unit_price,
-									category: category)
+  Product.create!(name: name,
+                  desc: desc,
+                  unit_price: unit_price,
+                  category_id: category_id)
 end
 
-User.create!(name:  "Nam Pham",
-             email: "nampham@bu.edu",
-             password:              "foobar",
-             password_confirmation: "foobar")
+User.create!(name:  'Nam Pham',
+             email: 'nampham@bu.edu',
+             password:              'foobar',
+             password_confirmation: 'foobar')

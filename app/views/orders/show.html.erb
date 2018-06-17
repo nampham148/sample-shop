@@ -1,0 +1,22 @@
+<% provide(:title, "Shopping Cart") %>
+
+<h1> Order #<%= @order.id %> </h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Item Name</th>
+      <th scope="col">Unit Price</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Total Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render partial: "order_detail", collection: @order.order_details %>
+  </tbody>
+</table>
+
+<p> The value of this order is 
+<%= @order.order_details.inject(0) do |sum, detail| 
+	sum + (detail.quantity * detail.product.unit_price) 
+end %> </p>

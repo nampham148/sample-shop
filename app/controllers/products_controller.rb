@@ -1,8 +1,9 @@
 class ProductsController < ApplicationController
   def index
-  	@category = params[:category]
+    @categories = Category.all
+  	category_id = params[:category_id]
   	if @category
-  		@products = Product.where(category: @category).paginate(page: params[:page])
+  		@products = Category.find(category_id).products.paginate(page: params[:page])
   	else
   		@products = Product.all.paginate(page: params[:page])
   	end

@@ -1,9 +1,0 @@
-<% product = Product.find(order.product_id) %>
-
-<tr>
-  <th><%= product.name %></th>
-  <td><%= product.unit_price %></td>
-  <td><%= order.quantity %></td>
-  <td><%= product.unit_price * order.quantity %></td>
-  <td><%= order.updated_at %></td>
-</tr>

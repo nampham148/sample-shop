@@ -18,7 +18,7 @@
 
 <p> The value of your current order is 
 <%= @shopping_carts.inject(0) do |sum, cart| 
-	sum + (cart.quantity * Product.find(cart.product_id).unit_price) 
+	sum + (cart.quantity * cart.product.unit_price) 
 end %> </p>
 
-<%= button_to 'Order!', {controller: "shopping_carts", action: "post_order"} , method: :post, class: "btn btn-primary"  %>
+<%= button_to 'Order!', orders_path , method: :post, class: "btn btn-primary"  %>

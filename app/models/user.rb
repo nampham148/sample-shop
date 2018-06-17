@@ -1,5 +1,6 @@
 class User < ApplicationRecord
 	has_many :shopping_carts, dependent: :destroy
+	has_many :orders, dependent: :destroy
 
 	#has_many :cart_items, through: :shopping_carts, source: :product
 
@@ -10,13 +11,9 @@ class User < ApplicationRecord
 	has_secure_password
 	validates :password, presence: true, length: {minimum: 6}, allow_nil: true
 
-	def cart_items
-		self.shopping_carts.where(ordered: false).map { |cart| Product.find(cart[:product_id]) }
-	end
-
 	def add_to_cart(product_id, quantity)
-		if self.cart_items.include?(Product.find(product_id))
-			self.shopping_carts.find_by(product_id: product_id).increment!('quantity', quantity)
+		if self.shopping_carts.map(&:product).include?(Product.find(product_id))
+			self.shopping_carts.find_by(product_id: product_id).increment!('quantity', quantity.to_i)
 		else
 			self.shopping_carts.create!(product_id: product_id, quantity: quantity)
 		end
@@ -26,6 +23,7 @@ class User < ApplicationRecord
 		shopping_carts.destroy
 	end
 
+	#TODO: update accordingly
 	def order_cart(shopping_carts)
 			shopping_carts.update_attributes(ordered: true)
 	end

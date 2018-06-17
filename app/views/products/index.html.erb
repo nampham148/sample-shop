@@ -4,10 +4,10 @@
 
 <div class="row">
 	<div class="col-md-3"> 
-		<div><%= link_to "All", products_path %></div>
-		<div><%= link_to "Food", products_path(category: "food") %></div>
-		<div><%= link_to "Book", products_path(category: "book") %></div>
-		<div><%= link_to "Beer", products_path(category: "beer") %></div>
+		<div><%= link_to "All", root_path %></div>
+		<% @categories.each do |category| %>
+			<div> <%= link_to category.name.capitalize, root_path(category_id: category.id) %> </div>
+		<% end %>
 	</div>
 	<div class="col-md-9">
 		<%= will_paginate %>
