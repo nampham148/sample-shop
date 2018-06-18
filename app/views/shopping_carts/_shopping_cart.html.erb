@@ -1,8 +1,6 @@
-<% product = Product.find(shopping_cart.product_id) %>
-
 <tr>
-  <th><%= product.name %></th>
-  <td><%= product.unit_price %></td>
+  <th><%= shopping_cart.product.name %></th>
+  <td><%= shopping_cart.product.unit_price %></td>
   <td>
   	<%= form_for(shopping_cart) do |f| %>
 		  <div class=’form-group’>
@@ -10,6 +8,6 @@
 		  </div>
 		<% end %>
   </td>
-  <td><%= product.unit_price * shopping_cart.quantity %></td>
+  <td><%= shopping_cart.product.unit_price * shopping_cart.quantity %></td>
   <td> <%= link_to "delete", shopping_cart, method: :delete %> </td>
 </tr>
